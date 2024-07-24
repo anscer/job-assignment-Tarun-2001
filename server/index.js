@@ -4,7 +4,6 @@ const dotenv = require('dotenv').config()
 const stateRoute = require('./route/stateRoute');
 const authRoute = require('./route/authRoute');
 
-const { protect } = require('./middlewares/authentication');
 const NotFound = require('./middlewares/NotFound');
 const { errorHandle } = require('./middlewares/errorHandle');
 
@@ -31,8 +30,19 @@ app.use('/api/auth',authRoute)
 app.use('/api/state',stateRoute)
 app.use(NotFound)
 app.use(errorHandle)
-app.listen(port, () => {
+
+
+let server = app.listen(port, () => {
     dbConnection(url)
- console.log(`Server is running on port: ${port}`);
+    console.log(`Server is running on port: ${port}`);
 });
 
+const  disconnectServer = async()=> {
+    if(server){
+        await server.close(() => {
+            console.log('Server closed');
+        });
+    }
+}
+
+module.exports = {app,disconnectServer}

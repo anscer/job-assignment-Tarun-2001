@@ -10,4 +10,9 @@ const dbConnection = async (mongoUrl) => {
     }
 }
 
-module.exports = {dbConnection}
+const disConnectdbConnection = async () => {
+    await mongoose.disconnect();
+    console.log("Disconnected from MongoDB");
+}
+
+module.exports = { dbConnection,disConnectdbConnection }
