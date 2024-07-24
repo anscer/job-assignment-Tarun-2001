@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "127d1fad-fed6-402e-9111-913ea65f1e5c",
+		"name": "StateManagementAssignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37176165"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"tarun3\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "StartFragmentAuthenticates a user by validating the provided username and password. Returns a token on successful authentication which can be used for subsequent requests requiring authentication"
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"tarun3\",\r\n    \"password\":\"123\",\r\n    \"confirmpassword\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": "StartFragmentRegisters a new user by providing a username, password, and password confirmation. Ensures that the passwords match and the username is unique."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "StateOpreations",
+			"item": [
+				{
+					"name": "getState",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/state",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"state"
+							]
+						},
+						"description": "StartFragment Retrieves a list of all states. Each state includes its name, description, status, and timestamps for creation and last update"
+					},
+					"response": []
+				},
+				{
+					"name": "createState",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"name 1\",\r\n    \"description\": \"description 1\",\r\n    \"status\": \"status 1\",\r\n    \"createdAt\": 1721741569,\r\n    \"updatedAt\": 1721741569\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/state/createState",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"state",
+								"createState"
+							]
+						},
+						"description": "StartFragmentCreates a new state with the provided details. The state includes a name, description, status, and timestamps for creation and last update."
+					},
+					"response": []
+				},
+				{
+					"name": "deleteState",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/state/deleteState/669fb8877d8ae3ca41d356ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"state",
+								"deleteState",
+								"669fb8877d8ae3ca41d356ec"
+							]
+						},
+						"description": "StartFragment Deletes an existing state identified by its ID."
+					},
+					"response": []
+				},
+				{
+					"name": "updateState",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"name 1......\",\r\n    \"description\": \"description 1\",\r\n    \"status\": \"status 1\",\r\n    \"createdAt\": 1721741569,\r\n    \"updatedAt\": 1721741569\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/state/updateState/669fb8877d8ae3ca41d356eb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"state",
+								"updateState",
+								"669fb8877d8ae3ca41d356eb"
+							]
+						},
+						"description": "StartFragmentUpdates the details of an existing state identified by its ID. The request body should include the updated name, description, status, and timestamps."
+					},
+					"response": []
+				},
+				{
+					"name": "aggregateState",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "period",
+								"value": "hour",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/state/aggregateState?period=hour",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"state",
+								"aggregateState"
+							],
+							"query": [
+								{
+									"key": "period",
+									"value": "hour"
+								}
+							]
+						},
+						"description": "StartFragmentAggregates states based on the specified time period, such as hour, day, or month. The `period` query parameter determines the aggregation period."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
