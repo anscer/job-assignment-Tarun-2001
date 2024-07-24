@@ -1,7 +1,12 @@
 const express = require('express');
 const { dbConnection } = require('./Config/db.config');
 const dotenv = require('dotenv').config()
-const stateRoute = require('./route/stateRoute')
+const stateRoute = require('./route/stateRoute');
+const authRoute = require('./route/authRoute');
+
+const { protect } = require('./middlewares/authentication');
+const NotFound = require('./middlewares/NotFound');
+const { errorHandle } = require('./middlewares/errorHandle');
 
 const app = express();
 const port = process.env.PORT||3000;
@@ -14,20 +19,18 @@ const url = `mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.oktfzry.mongodb.net/
 app.use(express.json());
 app.use(express.static('public'));
 
-
-app.use('/api/state',stateRoute)
-
 app.get('/', (req, res) => {
- res.send('Hello, World!');
+    res.json({ message: 'This is an test endpoint' });
 });
 
 app.get('/api/test', (req, res) => {
- res.json({ message: 'This is an test endpoint' });
+    res.json({ message: 'This is an test endpoint' });
 });
 
-
-
-
+app.use('/api/auth',authRoute)
+app.use('/api/state',stateRoute)
+app.use(NotFound)
+app.use(errorHandle)
 app.listen(port, () => {
     dbConnection(url)
  console.log(`Server is running on port: ${port}`);
